@@ -1,10 +1,10 @@
 # Recipe Generator Chatbot🧑🏼‍🍳🥑
 
-Welcome to the Recipe Generator Chatbot repository! This project utilizes the Llama2 model 🦙, LangChain 🔗, and Streamlit👑 to create an interactive and engaging chatbot that generates recipes based on user preferences.
+Welcome to the Recipe Generator Chatbot repository! This project utilizes the Falcon model 🦅, LangChain 🔗, and Streamlit👑 to create an interactive and engaging chatbot that generates recipes based on user preferences.
 
 ## Introduction
 
-The Recipe Generator Chatbot 🤖 is designed to assist users in finding and creating delicious recipes tailored to their preferences. It leverages the Llama2 model 🦙 for natural language understanding, LangChain 🔗 for recipe generation, and Streamlit 👑 for the user interface.
+The Recipe Generator Chatbot 🤖 is designed to assist users in finding and creating delicious recipes tailored to their preferences. It leverages the Falcon model 🦅 for natural language understanding, LangChain 🔗 for recipe generation, and Streamlit 👑 for the user interface.
 
 ## Features
 
@@ -21,4 +21,4 @@ This project is licensed under the [MIT License](LICENSE). Feel free to use, mod
 
 ---
 
-We hope you enjoy using the Recipe Generator Chatbot! If you have any questions or issues, please don't hesitate to [open an issue](https://github.com/your-username/recipe-generator-chatbot/issues).
+We hope you enjoy using the Recipe Generator Chatbot! 
