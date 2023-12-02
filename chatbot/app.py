@@ -1,4 +1,7 @@
+import os
 import streamlit as st
+import chainlit as cl
+from langchain.llms import HuggingFaceHub
 #from transformers import pipeline
 from langchain.llms import LlamaCpp
 from langchain.prompts.chat import (
@@ -10,19 +13,26 @@ from langchain.chains import LLMChain
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 
+os.environ['API_KEY'] ="********"
+
 
 st.set_page_config(page_title="Recipe Generator🥑", page_icon="*", layout="wide", )
 st.markdown(f"""
             <style>
-            .stApp {{background-image: url("https://images.unsplash.com/photo-1612538498456-e861df91d4d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
-                     background-attachment: fixed;
+            .stApp {{background-attachment: fixed;
                      background-size: cover}}
          </style>
          """, unsafe_allow_html=True)
 
+#Model details and parameters
+model_id = 'LLM MODEL/FALCON Model'
+
+falcon_llm = HuggingFaceHub(huggingfacehub_api_token=os.environ['API_KEY'],
+                            repo_id=model_id,
+                            model_kwargs={"temperature":0.8,"max_new_tokens":2000})
+
 # set prompt template
-prompt_template = """You are a human who is trying to give recipes for different  food  items and you need to come up with steps for how to make that food item.
-Come up with a step by step instructions for the food item..
+prompt_template = """You are an AI assistant that provides helpful answers to user queries.
 """
 
 system_message_prompt = SystemMessagePromptTemplate.from_template(prompt_template)
@@ -35,9 +45,9 @@ chat_prompt = ChatPromptTemplate.from_messages(
 )
 
 callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-# pipe = pipeline("text-generation", model="meta-llama/Llama-2-7b-chat-hf")
 
-#lm_chain = LLMChain(llm=pipe, prompt=chat_prompt)
+
+llm_chain = LLMChain(llm=falcon_llm, prompt=chat_prompt)
 
 st.title("Recipe Generator🧑🏼‍🍳🥑")
 input_title = st.text_input("Ask anything", placeholder="How to make coffee...",)
